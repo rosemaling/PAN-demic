@@ -18,4 +18,19 @@ public class DataService {
     public List<Recipe> getRecipes() {
         return recipeList;
     }
+
+    public Recipe getRecipe(int id) {
+        for (int i = 0; i < recipeList.size(); i++) {
+            if (recipeList.get(i).getId() == id) {
+                return recipeList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Recipe addRecipe(Recipe recipe) {
+        recipe.setId(getNextId());
+        recipeList.add(recipe);
+        return recipe;
+    }
 }
