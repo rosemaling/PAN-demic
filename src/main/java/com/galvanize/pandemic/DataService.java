@@ -18,4 +18,14 @@ public class DataService {
     public List<Recipe> getRecipes() {
         return recipeList;
     }
+
+    public Recipe getRecipe(int id) {
+        return null;
+    }
+
+    public Recipe addRecipe(Recipe recipe) {
+        recipe.setId(getNextId());
+        recipeList.add(recipe);
+        return recipe;
+    }
 }

@@ -1,8 +1,6 @@
 package com.galvanize.pandemic;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +16,15 @@ public class RecipesController {
     @GetMapping
     public List<Recipe> getRecipes() {
         return dataService.getRecipes();
+    }
+
+    @GetMapping("/{id}")
+    public Recipe getRecipe(@PathVariable int id) {
+        return dataService.getRecipe(id);
+    }
+
+    @PostMapping
+    public Recipe addRecipe(@RequestBody Recipe recipe) {
+        return dataService.addRecipe(recipe);
     }
 }
