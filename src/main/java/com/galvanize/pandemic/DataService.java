@@ -2,14 +2,15 @@ package com.galvanize.pandemic;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class DataService {
-    private static int nextId = 0;
-    private List<Recipe> recipeList;
+    private int nextId = 0;
+    private List<Recipe> recipeList = new ArrayList<>();
 
-    public static int getNextId() {
+    public int getNextId() {
         int id = nextId;
         nextId++;
         return id;
@@ -35,6 +36,8 @@ public class DataService {
     }
 
     public Recipe updateRecipe(int id, Recipe recipe) {
-        return null;
+        recipe.setId(id);
+        recipeList.set(id, recipe);
+        return recipe;
     }
 }
