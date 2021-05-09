@@ -17,8 +17,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -78,4 +77,17 @@ public class RecipesControllerTest {
                         .andExpect(jsonPath("ingredients").value("bread and stuff"));
     }
 
+    @Test
+    void updateRecipeById() throws Exception {
+        Recipe updated = new Recipe("sandwich", "you put the ham between the bread", "bread and ham");
+        when(dataService.updateRecipe(anyInt(), any(Recipe.class))).thenReturn(updated);
+
+        mockMvc.perform(patch("/recipes/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"sandwich\", \"directions\":\"you put the ham between the bread\", \"ingredients\":\"bread and ham\"}"))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("name").value("sandwich"))
+                        .andExpect(jsonPath("directions").value("you put the ham between the bread"))
+                        .andExpect(jsonPath("ingredients").value("bread and ham"));
+    }
 }

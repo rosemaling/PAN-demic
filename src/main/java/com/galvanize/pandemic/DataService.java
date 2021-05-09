@@ -33,4 +33,8 @@ public class DataService {
         recipeList.add(recipe);
         return recipe;
     }
+
+    public Recipe updateRecipe(int id, Recipe recipe) {
+        return null;
+    }
 }
