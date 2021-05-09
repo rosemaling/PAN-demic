@@ -10,7 +10,7 @@ public class Recipe {
     }
 
     public Recipe(String name, String directions, String ingredients) {
-        this.id = DataService.getNextId();
+        //this.id = DataService.getNextId();
         this.name = name;
         this.directions = directions;
         this.ingredients = ingredients;
